@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>Bilinea</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <img src="../icons/itr-48.png" width="20" height="20" alt="" />
+      <strong>Bilinea</strong>
+      <span class="ver">v0.1</span>
+    </header>
+    <div id="page-controls">
+      <button id="translate" class="primary" data-test="translate-btn">翻译本页</button>
+      <button id="stop" data-test="stop-btn">停止并清除</button>
+      <label class="switch-row">
+        <input type="checkbox" id="auto" data-test="auto-toggle" />
+        <span class="track"><span class="dot"></span></span>
+        <span>自动翻译本站</span>
+      </label>
+      <label class="switch-row">
+        <input type="checkbox" id="sel" data-test="sel-toggle" />
+        <span class="track"><span class="dot"></span></span>
+        <span>划词翻译气泡</span>
+      </label>
+      <label class="switch-row">
+        <input type="checkbox" id="hover" data-test="hover-toggle" />
+        <span class="track"><span class="dot"></span></span>
+        <span>悬停 Alt 段落译文</span>
+      </label>
+    </div>
+    <!-- T-028f：活动 tab 是原生 PDF 时显示入口，隐藏常规整页控件 -->
+    <section id="pdf-entry" hidden data-test="pdf-entry">
+      <p class="pdf-title">检测到 PDF</p>
+      <button id="pdf-open" class="primary" data-test="pdf-open-btn">用 Bilinea 打开</button>
+      <p class="pdf-hint">在扩展内阅读器中双语阅读；当前页不会被接管。</p>
+    </section>
+    <section id="export" hidden data-test="export-section">
+      <p class="export-title">字幕导出 <span id="export-count"></span></p>
+      <div class="export-row">
+        <button id="export-md" data-test="export-md-btn">MD</button>
+        <button id="export-html" data-test="export-html-btn">HTML</button>
+        <button id="export-sum" data-test="export-sum-btn">MD+AI 简述</button>
+      </div>
+    </section>
+    <!-- T-027 关键帧：恒显（「截帧」任何页面可用）；导出/清除行有帧时才现 -->
+    <section id="kframe" data-test="kframe-section">
+      <p class="export-title">关键帧 <span id="kframe-count"></span></p>
+      <div class="export-row">
+        <button id="kframe-shot" data-test="kframe-shot-btn">截帧</button>
+      </div>
+      <div class="export-row" id="kframe-actions" hidden data-test="kframe-actions">
+        <button id="kframe-md" data-test="kframe-md-btn">MD(图)</button>
+        <button id="kframe-list" data-test="kframe-list-btn">时间戳</button>
+        <button id="kframe-clear" data-test="kframe-clear-btn">清除</button>
+      </div>
+    </section>
+    <footer>
+      <a id="options" href="../options/index.html" target="_blank" rel="noreferrer">设置…</a>
+      <span id="state" data-test="state"></span>
+    </footer>
+    <script src="index.js"></script>
+  </body>
+</html>

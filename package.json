@@ -1,0 +1,29 @@
+{
+  "name": "bilinea",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Bilinea：Chrome/Edge 双语阅读扩展 · 网页对照 · 划词悬停 · 视频字幕 · PDF 阅读器",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"{src,tests}/**/*.ts\"",
+    "test": "vitest run",
+    "e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@playwright/test": "^1.50.0",
+    "@types/node": "^22.10.5",
+    "esbuild": "^0.24.2",
+    "eslint": "^9.18.0",
+    "jsdom": "^25.0.1",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.20.0",
+    "vitest": "^2.1.8"
+  },
+  "dependencies": {
+    "pdfjs-dist": "6.4.299"
+  }
+}

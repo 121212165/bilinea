@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>Bilinea · 设置</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1><img src="../icons/itr-48.png" width="26" height="26" alt="" /> Bilinea · 设置</h1>
+
+    <section id="providers">
+      <h2>翻译引擎（自上而下降级使用）</h2>
+      <div id="provider-list"></div>
+      <div class="row">
+        <button id="add-openai">+ OpenAI 兼容</button>
+        <button id="add-google">+ Google 免费机翻</button>
+        <button id="add-ms">+ 微软免费机翻</button>
+      </div>
+    </section>
+
+    <section id="general">
+      <h2>常规</h2>
+      <label>目标语言（如 zh-CN / en / ja）<input id="targetLang" data-test="target-lang" /></label>
+      <label
+        >自动翻译站点白名单（每行一个域名）
+        <textarea id="sites" data-test="sites" rows="4"></textarea
+      ></label>
+      <label
+        >译文样式
+        <select id="styleMode" data-test="style-mode">
+          <option value="bilingual">双语对照</option>
+          <option value="translation-only">仅显示译文</option>
+        </select></label
+      >
+      <label
+        >主题
+        <select id="theme" data-test="theme">
+          <option value="auto">跟随网页</option>
+          <option value="light">浅色</option>
+          <option value="dark">深色</option>
+        </select></label
+      >
+      <label
+        ><input type="checkbox" id="hoverEnabled" data-test="hover" /> 悬停 Alt 显示段落译文</label
+      >
+      <label
+        ><input type="checkbox" id="selectionEnabled" data-test="selection" /> 划词翻译气泡</label
+      >
+      <label
+        ><input type="checkbox" id="pdfEntryEnabled" data-test="pdf-entry" /> 原生 PDF
+        页显示阅读器入口</label
+      >
+    </section>
+
+    <section id="ui-tweaks">
+      <h2>界面微调</h2>
+      <div class="tweaks">
+        <label
+          >字幕字号 px（12~40）
+          <input type="number" id="subtitleFontSize" data-test="subtitle-font-size" min="12" max="40" step="1"
+        /></label>
+        <label
+          >字幕离播放器底边 px（0~600）
+          <input type="number" id="subtitleBottom" data-test="subtitle-bottom" min="0" max="600" step="2"
+        /></label>
+        <label
+          >划词气泡字号 px（10~28）
+          <input type="number" id="bubbleFontSize" data-test="bubble-font-size" min="10" max="28" step="1"
+        /></label>
+        <label
+          >悬停卡字号 px（10~28）
+          <input type="number" id="hoverFontSize" data-test="hover-font-size" min="10" max="28" step="1"
+        /></label>
+        <label
+          >浮卡锚点偏移 px（0~80，划词/悬停共用）
+          <input type="number" id="floatOffset" data-test="float-offset" min="0" max="80" step="1"
+        /></label>
+      </div>
+      <p class="hint">保存后已打开的页面实时生效（悬停卡偏移随下一次悬停取新值）；越界值自动收编到合法范围。</p>
+    </section>
+
+    <footer>
+      <button id="save" data-test="save">保存</button>
+      <span id="msg" data-test="msg"></span>
+    </footer>
+    <script src="index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PDF · Bilinea</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="toolbar">
+      <div class="brand">
+        <img src="../icons/itr-48.png" width="22" height="22" alt="" />
+        <span class="brand-name">Bilinea</span>
+        <span class="doc-title" id="doc-title" title="PDF 阅读器">PDF 阅读器</span>
+      </div>
+
+      <div class="tools" role="toolbar" aria-label="PDF 工具栏">
+        <button id="open-file" class="tool-btn" data-test="open-file" title="打开本地 PDF">
+          打开文件
+        </button>
+        <input id="file-input" type="file" accept="application/pdf,.pdf" hidden />
+        <span class="sep" aria-hidden="true"></span>
+
+        <button id="prev-page" class="tool-btn icon" data-test="prev-page" title="上一页" disabled>
+          ‹
+        </button>
+        <label class="page-box" title="跳转页码">
+          <input
+            id="page-input"
+            type="number"
+            min="1"
+            value="1"
+            inputmode="numeric"
+            aria-label="页码"
+            data-test="page-input"
+            disabled
+          />
+          <span class="page-total">/ <span id="page-count" data-test="page-count">–</span></span>
+        </label>
+        <button id="next-page" class="tool-btn icon" data-test="next-page" title="下一页" disabled>
+          ›
+        </button>
+        <span class="sep" aria-hidden="true"></span>
+
+        <button id="zoom-out" class="tool-btn icon" data-test="zoom-out" title="缩小" disabled>−</button>
+        <span id="zoom-label" class="zoom-label" data-test="zoom-label">–</span>
+        <button id="zoom-in" class="tool-btn icon" data-test="zoom-in" title="放大" disabled>+</button>
+        <button id="fit-width" class="tool-btn" data-test="fit-width" title="适应宽度" disabled>
+          适宽
+        </button>
+      </div>
+
+      <div id="status" class="status" data-test="status" aria-live="polite"></div>
+    </header>
+
+    <div id="notice" class="notice" data-test="notice" hidden>
+      <span id="notice-text"></span>
+      <button id="notice-close" class="notice-close" title="关闭提示" aria-label="关闭提示">×</button>
+    </div>
+
+    <main class="shell">
+      <section id="viewer" class="viewer" aria-label="PDF 原文">
+        <div id="viewer-scroll" class="viewer-scroll">
+          <div id="pages" class="pages" data-test="pages"></div>
+        </div>
+
+        <div id="empty" class="empty" data-test="empty">
+          <div class="empty-card">
+            <div class="empty-badge">PDF</div>
+            <h1>打开一份 PDF</h1>
+            <p>拖入本地文件，或在地址后加 <code>?file=https://…</code></p>
+            <button id="empty-pick" class="primary" data-test="empty-pick">选择本地 PDF</button>
+            <p class="hint">
+              仅支持 http/https 链接与本地拖入；不会接管浏览器默认 PDF 查看器。
+            </p>
+          </div>
+        </div>
+
+        <div id="loading" class="loading" data-test="loading" hidden>
+          <div class="spinner" aria-hidden="true"></div>
+          <p id="loading-text" data-test="loading-text">正在加载…</p>
+        </div>
+
+        <div id="error" class="error" data-test="error" role="alert" hidden>
+          <div class="error-card">
+            <h2 id="error-title" data-test="error-title">无法打开 PDF</h2>
+            <p id="error-detail" data-test="error-detail"></p>
+            <div class="error-actions">
+              <button id="error-retry" class="primary" data-test="error-retry">重试</button>
+              <button id="error-pick" data-test="error-pick">选择本地文件</button>
+              <a id="error-native" href="#" target="_blank" rel="noreferrer" hidden>
+                在原生查看器打开
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div id="drop-overlay" class="drop-overlay" data-test="drop-overlay" hidden>
+          <div>松开以打开 PDF</div>
+        </div>
+      </section>
+
+      <aside class="sidebar" aria-label="双语译文">
+        <div class="sidebar-head">
+          <span class="sidebar-title">双语译文</span>
+          <span id="side-page" class="pill" data-test="side-page">第 – 页</span>
+        </div>
+        <div id="translation-actions" class="sidebar-actions" data-test="translation-actions" hidden>
+          <button id="translate-page" class="primary" data-test="translate-page" disabled>
+            翻译本页
+          </button>
+          <button id="translate-all" data-test="translate-all" disabled>翻译全文</button>
+          <button id="stop-translate" data-test="stop-translate" hidden>停止</button>
+          <span id="translation-target" class="target-label" data-test="translation-target"></span>
+        </div>
+        <div id="side-toggles" class="side-toggles" data-test="side-toggles" hidden>
+          <label title="在一侧标记时，对应段落也标记到另一侧">
+            <input type="checkbox" id="sync-marks" data-test="sync-marks" />
+            同步标记
+          </label>
+          <label title="原文与译文滚动时互相跟随">
+            <input type="checkbox" id="link-scroll" data-test="link-scroll" />
+            滚动联动
+          </label>
+          <button id="clear-marks" data-test="clear-marks" hidden>清除本页标记</button>
+        </div>
+        <div id="side-body" class="sidebar-body" data-test="side-body">
+          <div class="side-empty">
+            <p>打开 PDF 后，译文会按页显示在这里。</p>
+            <p class="muted">左侧原文可选中复制；阅读器不接管默认 PDF 查看器。</p>
+          </div>
+        </div>
+        <div id="side-status" class="sidebar-foot" data-test="side-status"></div>
+      </aside>
+    </main>
+
+    <script type="module" src="index.js"></script>
+    <button id="itr-mark-btn" type="button" data-test="mark-btn" hidden>高亮</button>
+  </body>
+</html>

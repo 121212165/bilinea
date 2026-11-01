@@ -1,0 +1,184 @@
+:root {
+  --accent: #4a6cf7;
+  --accent-2: #8c3ff2;
+  color-scheme: light dark;
+}
+body {
+  margin: 0;
+  padding: 14px;
+  width: 236px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+  font: 14px/1.4 system-ui, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+  color: #1f2328;
+  background: #f7f8fa;
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #e8e8ea;
+    background: #1d1e22;
+  }
+}
+header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 2px;
+}
+header strong {
+  font-size: 14px;
+  letter-spacing: 0.3px;
+}
+.ver {
+  margin-left: auto;
+  font-size: 11px;
+  opacity: 0.45;
+}
+button {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  padding: 9px 12px;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  color: inherit;
+  background: rgba(127, 127, 127, 0.12);
+  transition: filter 0.15s, background 0.15s;
+}
+button:hover {
+  filter: brightness(1.05);
+}
+button:active {
+  transform: translateY(0.5px);
+}
+button.primary {
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 2px 10px rgba(74, 108, 247, 0.35);
+}
+#stop {
+  background: transparent;
+  border: 1px solid rgba(127, 127, 127, 0.4);
+}
+.switch-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  padding: 9px 12px;
+  border-radius: 9px;
+  background: rgba(127, 127, 127, 0.08);
+  cursor: pointer;
+  user-select: none;
+}
+.switch-row > input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.track {
+  flex: none;
+  width: 34px;
+  height: 20px;
+  border-radius: 999px;
+  background: rgba(127, 127, 127, 0.35);
+  position: relative;
+  transition: background 0.2s;
+}
+.dot {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: left 0.2s;
+}
+.switch-row > input:checked + .track {
+  background: var(--accent);
+}
+.switch-row > input:checked + .track .dot {
+  left: 16px;
+}
+footer {
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+}
+#options {
+  font-size: 12px;
+  text-decoration: none;
+  color: var(--accent);
+  opacity: 0.85;
+}
+#options:hover {
+  text-decoration: underline;
+}
+#state {
+  margin-left: auto;
+  font-size: 11px;
+  opacity: 0.6;
+  min-height: 1em;
+  text-align: right;
+}
+
+/* T-026 字幕导出（M3-3） + T-027 关键帧（共用分区样式） */
+#export,
+#kframe {
+  border-top: 1px solid rgba(127, 127, 127, 0.25);
+  padding-top: 8px;
+}
+#page-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#page-controls[hidden],
+#pdf-entry[hidden] {
+  display: none;
+}
+#pdf-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+#pdf-entry .pdf-title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.7;
+}
+#pdf-entry .pdf-hint {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.5;
+  opacity: 0.55;
+}
+#export .export-title,
+#kframe .export-title {
+  margin: 0 0 6px 2px;
+  font-size: 12px;
+  opacity: 0.75;
+}
+#export .export-row,
+#kframe .export-row {
+  display: flex;
+  gap: 6px;
+}
+#export .export-row button,
+#kframe .export-row button {
+  padding: 7px 4px;
+  font-size: 12px;
+  border-radius: 7px;
+}
+#kframe .export-row + .export-row {
+  margin-top: 6px;
+}

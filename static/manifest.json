@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "Bilinea 双语阅读",
+  "description": "双语对照翻译 · 划词/悬停 · 视频双语字幕 · PDF 阅读器。翻译服务完全自配。",
+  "version": "0.1.0",
+  "icons": {
+    "16": "icons/itr-16.png",
+    "48": "icons/itr-48.png",
+    "128": "icons/itr-128.png"
+  },
+  "permissions": ["storage", "unlimitedStorage", "scripting", "activeTab"],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "background": {
+    "service_worker": "service/index.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content/index.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options/index.html",
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_title": "翻译本页",
+    "default_icon": {
+      "16": "icons/itr-16.png",
+      "48": "icons/itr-48.png"
+    }
+  },
+  "commands": {
+    "translate-page": {
+      "suggested_key": { "default": "Alt+Shift+T" },
+      "description": "切换整页翻译"
+    },
+    "stop-translate": {
+      "description": "停止并清除全部译文"
+    },
+    "capture-keyframe": {
+      "suggested_key": { "default": "Alt+Shift+C" },
+      "description": "截取关键帧（T-027）"
+    }
+  }
+}
